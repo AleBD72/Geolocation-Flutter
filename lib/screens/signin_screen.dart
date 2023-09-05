@@ -26,9 +26,9 @@ class _SingInScreenState extends State<SingInScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(gradient: LinearGradient(colors:[
-          hexStringToColor("2E0249"), //
-          hexStringToColor("A91079"),
-          hexStringToColor("570A57")
+          hexStringToColor("32D9CB"), //
+          hexStringToColor("A5E65A"),
+          hexStringToColor("6A888C")
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(

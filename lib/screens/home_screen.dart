@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_app_proyecto/screens/signin_screen.dart';
@@ -32,64 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       moveToPosition(LatLng(_currentLocation?.latitude ?? 0, _currentLocation?.longitude ?? 0));
       // Guarda la ubicación en Firebase
-      guardarUbicacion(_currentLocation);
-      // Actualiza la última ubicación solo si ha cambiado
-      /*if (_lastLocation == null ||
-          _lastLocation!.latitude != _currentLocation!.latitude ||
-          _lastLocation!.longitude != _currentLocation!.longitude) {
-        _lastLocation = _currentLocation;
-
-        // Guarda la ubicación en Firebase solo si ha cambiado
-        guardarUbicacion(_currentLocation);
-      }*/
     });
-  }
-
- // Función para guardar la ubicación en Firebase
-  void guardarUbicacion(LocationData? locationData) async {
-    try {
-      User? user = FirebaseAuth.instance.currentUser;
-
-      if (user != null && locationData != null) {
-        CollectionReference ubicacionesCollection = FirebaseFirestore.instance.collection('ubicaciones');
-        //DateTime horaActual = DateTime.now();
-
-        QuerySnapshot ubicacionesQuery = await ubicacionesCollection
-        .where('usuarioId', isEqualTo: user.uid).get();
-
-        if(ubicacionesQuery.docs.isNotEmpty){
-          DocumentSnapshot registroUsuario = ubicacionesQuery.docs[0];
-          Map<String, dynamic> data = registroUsuario.data() as Map<String, dynamic>;
-
-          print('si existe el documento');
-          double latitud = data['latitud'].toDouble();
-          print("Latitud $latitud");
-          double longitud = data['longitud'].toDouble();
-          print("Longitud $longitud");
-          DateTime hora = data['hora'].toDate();
-          print('Hora: $hora');
-
-          
-        }else{
-          print('no existe ningun registro');
-
-          ubicacionesCollection.add({
-        //   'usuarioId': user.uid,
-        //   'latitud': locationData.latitude,
-        //   'longitud': locationData.longitude,
-        //   'hora': horaActual,
-         });
-        }
-
-        
-
-        // print('Ubicación guardada con éxito');
-      } else {
-        print('No hay usuario autenticado o datos de ubicación nulos');
-      }
-    } catch (error) {
-      print('Error al guardar la ubicación: $error');
-    }
   }
 
 

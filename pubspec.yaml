@@ -8,12 +8,15 @@ environment:
 
 dependencies:
   cloud_firestore: ^4.9.1
+  cupertino_icons: ^1.0.6
   firebase_auth: ^4.9.0
   firebase_core: ^2.15.1
   firebase_database: ^10.2.5
   flutter:
     sdk: flutter
+  flutter_geofire: ^2.0.3
   flutter_map: ^5.0.0
+  geolocator: ^10.0.0
   google_maps_flutter: ^2.5.0
   location: ^5.0.3
 
